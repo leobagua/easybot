@@ -1,0 +1,18 @@
+class ChatsController < ApplicationController
+  before_action :chat_params, only: :intents
+
+  def index;
+  end
+
+  def intents
+    response = Chat.intent(@chat_params[:chat])
+    render json: response[:result][:fulfillment], status: :ok
+  end
+
+  private
+
+  def chat_params
+    @chat_params = params.permit chat: :message
+  end
+
+end
