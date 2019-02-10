@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :fulfillments
   before_action :chat_params, only: :intents
 
   def index;
