@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :chats do
     collection do
       post :intents
+      post :fulfillments
     end
   end
 end

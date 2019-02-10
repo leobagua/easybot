@@ -9,6 +9,10 @@ class ChatsController < ApplicationController
     render json: response[:result][:fulfillment], status: :ok
   end
 
+  def fulfillments
+    render json: Chat.context({a: 1}), status: :ok
+  end
+
   private
 
   def chat_params
