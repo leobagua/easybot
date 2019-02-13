@@ -33,12 +33,10 @@ export default class Chat extends Component {
         const messages = this.state.messages;
         const current_id = this.state.messages[this.state.messages.length -1].id;
         const next_id = current_id + 1;
-        console.log(current_id, next_id);
 
         messages.push({
             id: next_id,
             text: message,
-            agent: 'Eu',
             bot: false
         });
 
@@ -52,22 +50,20 @@ export default class Chat extends Component {
             messages.push({
                 id: next_id + 1,
                 text: resposta.data.speech,
-                agent: 'Uno Bot',
                 bot: true
             });
+
             this.setState({ messages: messages });
         });
     };
 
     render() {
         return (
-            <div className="row">
-                <div className="chat" style={{ minHeight: window.innerHeight }}>
-                    <ChatHeader quantidadeMensagens={ this.state.messages[this.state.messages.length -1].id }/>
-                    <Messages messages={ this.state.messages }/>
-                    <div className="chat-message clearfix">
-                        <Input onSendMessage={ this.onSendMessage }/>
-                    </div>
+            <div className="wrapper">
+                <ChatHeader />
+                <Messages messages={ this.state.messages }/>
+                <div className="bottom">
+                    <Input onSendMessage={ this.onSendMessage } />
                 </div>
             </div>
         );

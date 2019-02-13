@@ -2,6 +2,7 @@ import {Component} from "react";
 import React from "react";
 
 export default class Input extends Component {
+
     state = {
         text: ""
     };
@@ -18,12 +19,10 @@ export default class Input extends Component {
 
     render() {
         return (
-            <div className="Input">
-                <form onSubmit={e => this.onSubmit(e)}>
-                    <input onChange={e => this.onChange(e)} value={this.state.text} type="text" placeholder="Digite a sua mensagem" rows="3" />
-                    <button>Enviar</button>
-                </form>
-            </div>
+            <form onSubmit={e => this.onSubmit(e)}>
+                <input onChange={e => this.onChange(e)} className="input" value={ this.state.text } type="text" placeholder="Digite sua mensagem aqui" />
+                <button className="send" />
+            </form>
         );
     }
 }

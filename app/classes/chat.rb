@@ -7,9 +7,21 @@ class Chat
 
     def context params
       {
-          speech: 'Next game schedules will be available soon',
-          displayText: 'Next game schedules will be available soon',
-          source: 'game schedule'
+          fulfillmentText: "O Curso é legal",
+          payload: {
+              "google": {
+                  "expectUserResponse": true,
+                  "richResponse": {
+                      "items": [
+                          {
+                              "simpleResponse": {
+                                  "textToSpeech": "this is a simple response"
+                              }
+                          }
+                      ]
+                  }
+              }
+          }
       }
     end
   end
