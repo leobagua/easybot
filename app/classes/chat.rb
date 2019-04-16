@@ -1,27 +1,14 @@
 class Chat
   class << self
     def intent params
-      client = ApiAiRuby::Client.new :client_access_token => '69f935dbe8b3410ca567b72dfacd107b'
-      client.text_request params[:message]
+      client = ApiAiRuby::Client.new client_access_token: Config.client_access_token
+      client.text_request params[:message], { contexts: params[:contexts] }
     end
 
-    def context params
+    def context parameter, intent
+      response_text = Answer.find_by(parameter_match: parameter, intent: intent)&.response || 'Desculpe, mas não entendi. Poderia repetir a pergunta?'
       {
-          fulfillmentText: "O Curso é legal",
-          payload: {
-              "google": {
-                  "expectUserResponse": true,
-                  "richResponse": {
-                      "items": [
-                          {
-                              "simpleResponse": {
-                                  "textToSpeech": "this is a simple response"
-                              }
-                          }
-                      ]
-                  }
-              }
-          }
+          fulfillmentText: response_text
       }
     end
   end

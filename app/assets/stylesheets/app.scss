@@ -1,0 +1,16 @@
+.jr-card {
+  padding: 30px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  margin: 30px;
+  background-color: $white;
+  border-radius: 6px;
+  position: relative;
+
+  .card-heading {
+    margin-bottom: 2.5px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root 'chats#index'
+  root 'configs#index'
+
+  devise_for :users
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
   resources :chats do
     collection do
@@ -7,4 +12,6 @@ Rails.application.routes.draw do
       post :fulfillments
     end
   end
+  resources :answers
+  resources :configs, only: [:index, :create]
 end

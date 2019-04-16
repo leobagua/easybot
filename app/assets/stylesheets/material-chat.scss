@@ -6,8 +6,9 @@ $yellow: #FFEB3B;
 $red: #F44336;
 $orange: #FF5722;
 $black: #333333;
+$green: #4caf50;
 
-$primaryColor: $blue;
+$primaryColor: $white;
 
 $nav: 100;
 
@@ -15,7 +16,7 @@ $navHeight: 82px;
 
 $trans: 0.3s ease;
 
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400);
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,500);
 * {
   box-sizing: border-box;
 }
@@ -35,7 +36,7 @@ body {
   overflow: hidden;
   background-color: white;
   position: relative;
-  box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.5);
+  box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
 
   .inner {
     overflow: scroll;
@@ -74,14 +75,10 @@ body {
     left: 0;
     top: 0;
     z-index: $nav + 10;
-
     background-color: $primaryColor;
     border-bottom: 3px solid darken($primaryColor, 10%);
-    color: $white;
-
-    -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
-    -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.1);
-    box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    color: $black;
+    font-weight: 500;
 
     .main-nav {
       position: absolute;
@@ -156,7 +153,9 @@ body {
 
 .bottom {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: $navHeight;
   background: $white;
 
@@ -194,18 +193,21 @@ body {
     width: $navHeight/1.5;
     border-radius: 100%;
     border: 0;
-    background: $primaryColor;
+    background: $green;
     color: $white;
-
     bottom: ($navHeight - ($navHeight/1.5)) / 2;
     right: ($navHeight - ($navHeight/1.5)) / 2;
+    box-shadow: 0 1px 0 0 rgba(50, 50, 50, 0.3);
 
     &:before {
       content: '';
       background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_send_white_48dp.png) no-repeat center center;
       background-size: $navHeight/2.5;
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
     &:focus {
@@ -255,14 +257,14 @@ body {
       float: left;
       color: $white;
       -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
-      -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.1);
-      box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+      -moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+      box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
     }
 
     .text-wrapper {
       background: $primaryColor;
       float: left;
-      color: $white;
+      color: $black;
     }
 
     .text-wrapper {
@@ -296,6 +298,32 @@ body {
     }
   }
 }
+
+.chat-avatar-mode {
+  position: relative;
+  max-width: 60px;
+
+  & .chat-mode {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    z-index: 1;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    &.small {
+      width: 8px;
+      height: 8px;
+    }
+
+    &.online {
+      background-color: $green;
+    }
+  }
+}
+
 
 @media (max-width: 560px) {
   .wrapper {

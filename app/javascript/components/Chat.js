@@ -1,5 +1,4 @@
-import {Component} from "react";
-import React from "react";
+import React, {Component} from "react";
 
 import ChatHeader from "./ChatHeader";
 import Messages from "./Messages";
@@ -14,17 +13,17 @@ export default class Chat extends Component {
         messages: [
             {
                 id: 1,
-                text: "Olá, tudo bem? Eu sou o UnoBot! Estou aqui para te ajudar!",
-                agent: "Uno Bot",
+                text: this.props.defaultFallbackMessage,
                 bot: true
             }
         ],
+        contexts: [],
         authenticity_token: '',
     };
 
     componentDidMount() {
         this.setState({
-                authenticity_token: $('meta[name=csrf-token]').attr('content')
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
             }
         );
     }
@@ -44,24 +43,29 @@ export default class Chat extends Component {
             'chats/intents/',
             {
                 message: message,
+                contexts: this.state.contexts,
                 authenticity_token: this.state.authenticity_token
             }
         ).then(resposta => {
+            const { fulfillment, parameters, contexts } = resposta.data;
+
             messages.push({
                 id: next_id + 1,
-                text: resposta.data.speech,
+                text: fulfillment.speech,
                 bot: true
             });
 
-            this.setState({ messages: messages });
+            this.setState({ messages: messages, contexts: contexts });
         });
     };
 
     render() {
+        const { chatbotImage, chatbotName } = this.props;
+
         return (
             <div className="wrapper">
-                <ChatHeader />
-                <Messages messages={ this.state.messages }/>
+                <ChatHeader chatbotImage={chatbotImage} chatbotName={chatbotName} />
+                <Messages messages={ this.state.messages } />
                 <div className="bottom">
                     <Input onSendMessage={ this.onSendMessage } />
                 </div>
